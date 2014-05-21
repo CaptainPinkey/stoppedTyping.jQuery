@@ -1,14 +1,14 @@
 (function($) {
     $.fn.stoppedTyping = function(callback, time) {
         time = time || 500;
-        var timers = new Array();
+        var timers = 0;
         this.on('keyup', function(event) {
-            timers.push(1);
-            setTimeout(timeOver, 1000);
+            timers++;
+            setTimeout(timeOver, time);
         });
         function timeOver() {
-            timers.shift();
-            if (timers.length == 0) {
+            timers--;
+            if (timers == 0) {
                 if (typeof callback != "undefined"){
                     callback();                
                 }
